@@ -69,6 +69,30 @@
         </footer>
     </div>
 
+   
+
+    <!-- Add this to your HTML file, if the chat bot structure isn't already present -->
+    <!-- This is the chat icon in the bottom right -->
+    <div class="chat-icon" id="chat-icon">
+        <i class="fas fa-comments"></i>
+        <span class="notification-badge" id="notification-badge" class="hidden"></span>
+    </div>
+
+    <!-- This is the chat box that appears when the icon is clicked -->
+    <div id="chat-box" class="hidden">
+        <div class="chat-header">
+            <div>Chat Assistant</div>
+            <button id="close-chat">&times;</button>
+        </div>
+        <div id="chat-history"></div>
+        <div class="chat-input-container">
+            <input type="text" id="chat-message" placeholder="Type your message...">
+            <button id="send-chat">
+                <i class="fas fa-paper-plane"></i> <!-- You can use FontAwesome or any other icon library -->
+            </button>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
