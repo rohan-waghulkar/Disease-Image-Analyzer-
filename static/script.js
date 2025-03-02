@@ -131,6 +131,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         chatHistory.scrollTop = chatHistory.scrollHeight;
                     }, 100);
                 }
+                
+                // Add New Scan button to results section
+                addNewScanButton();
             } else {
                 alert('Error: ' + data.error);
                 previewContainer.hidden = false;
@@ -167,6 +170,28 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('pre code').forEach(block => hljs.highlightBlock(block));
     }
     
+    // Add New Scan button function
+    function addNewScanButton() {
+        // Remove existing button if it exists
+        if (document.getElementById('new-scan-btn')) {
+            document.getElementById('new-scan-btn').remove();
+        }
+        
+        // Create button element
+        const newScanBtn = document.createElement('button');
+        newScanBtn.id = 'new-scan-btn';
+        newScanBtn.className = 'btn primary';
+        newScanBtn.innerHTML = '<i class="fas fa-plus"></i> New Scan';
+        
+        // Add click event to reset UI
+        newScanBtn.addEventListener('click', () => {
+            resetUI();
+        });
+        
+        // Add button to the top of results section
+        resultsSection.insertBefore(newScanBtn, resultsSection.firstChild);
+    }
+    
     // Tab Switching
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -186,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         uploadArea.hidden = false;
         previewContainer.hidden = true;
         resultsSection.hidden = true;
+        loadingElement.hidden = true;
         
         // Reset chat history
         if (chatHistory) {
@@ -201,6 +227,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (chatBox) {
             chatBox.classList.add('hidden');
+        }
+        
+        // Remove the New Scan button if it exists
+        if (document.getElementById('new-scan-btn')) {
+            document.getElementById('new-scan-btn').remove();
         }
     }
     
